@@ -1,0 +1,30 @@
+{
+  "name": "demo_f8",
+  "version": "1.0.0",
+  "description": "demo_f8",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenTriTrung/demo_f8.git"
+  },
+  "keywords": [
+    "demo",
+    "nodejs"
+  ],
+  "author": "tritrung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NguyenTriTrung/demo_f8/issues"
+  },
+  "homepage": "https://github.com/NguyenTriTrung/demo_f8#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

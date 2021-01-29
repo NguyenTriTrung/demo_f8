@@ -1,0 +1,82 @@
+<H1>Danh sách khóa học</H1>
+<a href="/me/stored/courses/">Danh sách khóa học</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tên Khóa Học</th>
+      <th scope="col">Trình độ</th>
+      <th scope="col" colspan="2">Thời gian Đăng</th>
+     
+    </tr>
+  </thead>
+  <tbody>  
+    {{#each Course}}
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.level}}</td>
+      <td>{{this.createdAt}}</td>
+      <td>
+          <a href="" class="btn btnlink  btn-restored" data-id="{{this._id}}">Khôi phục</a> 
+          <a data-id="{{this._id}}" href="" class="btn btnlink" data-bs-toggle="modal" data-bs-target="#user-delete">Xóa vĩnh viễn</a>
+      </td>
+    </tr>
+    {{else}}
+    <tr>
+      <th colspan="5" class="text-center">Thùng rác rỗng?. <a href="/me/stored/courses">Quay lại</a></th>
+    </tr>
+    {{/each}}  
+  </tbody>
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="user-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Yêu cầu xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hành động này sẽ không khôi phục lại được. Bạn có chắc chắn muốn xóa không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btn-deteleForce-course" type="button" class="btn btn-danger"> Xóa </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="form-deleteForce-course" method="POST" ></form>
+<form name="form-restored-course" method="POST" ></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        var id;
+        var btnDeleteForce=document.getElementById('btn-deteleForce-course');
+        var btnRestored=$('.btn-restored');
+        var deleteForm=document.getElementsByName('form-deleteForce-course')[0];//document.forms['form-delete-course']
+        var restoredForm=document.getElementsByName('form-restored-course')[0]
+        $('#user-delete').on('show.bs.modal', function (event) {
+          // Button that triggered the modal
+          var button = $(event.relatedTarget);
+          // Extract info from data-bs-* attributes
+          id = button.data('id');
+          });
+        btnDeleteForce.onclick=(function(){
+            var deleteId=$(this).data('id');
+            deleteForm.action='/courses/'+id+'/force/?_method=DELETE';
+            deleteForm.submit();
+        });
+        btnRestored.click(function(event){
+          event.preventDefault();
+          var restoredId=$(this).data('id');
+          restoredForm.action='/courses/'+ restoredId +'/restored/?_method=PATCH';
+          restoredForm.submit();
+        })
+
+    });
+</script>

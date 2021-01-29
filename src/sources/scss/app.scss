@@ -1,7 +1,15 @@
-@import "variables" ;
-h2{
-    color: red;
+@import 'variables';
+
+.card-course-item{
+    margin-top:16px ;
 }
-h1{
-    color:$h1;
+.ava-name{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right:4px ;
+}
+.selected-all-option{
+    width: 160px;
+    margin: 0 8px;
 }

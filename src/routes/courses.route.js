@@ -4,6 +4,7 @@ const router = express.Router();
 router.get('/create', courseController.create);
 router.post('/store', courseController.store);
 router.get('/:id/edit',courseController.edit);
+router.post('/handle-form-action/',courseController.handleFormAction)
 router.patch('/:id/restored',courseController.restored);
 router.delete('/:id/force',courseController.deleteForce);
 router.put('/:id',courseController.update);
